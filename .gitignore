@@ -162,3 +162,7 @@ cython_debug/
 **.pkl
 **.csv
 **.pass
+
+**/data/
+**/dt/
+**/source/
