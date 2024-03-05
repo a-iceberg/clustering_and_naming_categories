@@ -102,7 +102,11 @@ def extract_text(message):
         pattern = r"\n},"
 
         for text_component in message["text"]:
-            if isinstance(text_component, dict) and "text" in text_component:
+            if (
+                isinstance(text_component, dict)
+                and "text" in text_component
+                and text_component["type"] != "link"
+            ):
                 full_text.append(text_component["text"])
 
             elif isinstance(text_component, str):
@@ -127,6 +131,9 @@ def main():
         if message["type"] == "message":
             message_text = extract_text(message)
 
+            if message_text == "":
+                continue
+
             if "forwarded_from" in message:
                 question_id = message["id"]
                 questions[question_id] = message_text
@@ -134,7 +141,10 @@ def main():
             elif "reply_to_message_id" in message:
                 reply_id = message["reply_to_message_id"]
                 if reply_id in answers:
-                    if not "Текст: " in answers[reply_id]:
+                    if (
+                        not "Текст: " in answers[reply_id]
+                        and not "Описание присланного скриншота: " in message_text
+                    ):
                         answers[reply_id] += f" \nТекст: {message_text}"
                     else:
                         answers[reply_id] += " " + message_text
@@ -155,12 +165,14 @@ def main():
             continue
 
         answer = answers.get(q_id, "No answer found")
-        qa_pairs.append({"Question": question_text, "Answer": answer})
+        qa_pairs.append({f"Question {q_id}": question_text, f"Answer {q_id}": answer})
 
     with open("data/qa.json", "w", encoding="utf-8") as file:
         json.dump(qa_pairs, file, ensure_ascii=False, indent=4)
 
     print("Extracted", len(qa_pairs), "question-answer pairs.")
+
+    return qa_pairs
 
 
 if __name__ == "__main__":

@@ -74,3 +74,25 @@ def clean_text(df, first_filter, second_filter, third_filter):
     )
 
     return clean
+
+
+def clean_json(data):
+    pattern = re.compile(r"\[\n{\n.*?model': '.*?'", re.DOTALL)
+    cleaned_data = []
+
+    for item in data:
+        updated_item = {}
+        for key, value in item.items():
+            new_value = re.sub(pattern, "", value)
+            updated_item[key] = new_value
+        cleaned_data.append(updated_item)
+
+    return cleaned_data
+
+
+def parse_data(text, *keys):
+    values = []
+    for key in keys:
+        match = re.search(rf"'{key}': '([^']+)'", text)
+        values.append(match.group(1) if match else None)
+    return values
