@@ -20,7 +20,7 @@ def encode_image(image_path):
 
 def photo_description(message):
     user_text = ""
-    file_path = "source/" + message["photo"]
+    file_path = "../source/" + message["photo"]
     model = "gpt-4-vision-preview"
 
     base64_image = encode_image(file_path)
@@ -120,7 +120,7 @@ def extract_text(message):
 
 
 def main():
-    file_path = "source/result.json"
+    file_path = "../source/result.json"
     with open(file_path, "r", encoding="utf-8") as file:
         data = json.load(file)
 
@@ -167,8 +167,8 @@ def main():
         answer = answers.get(q_id, "No answer found")
         qa_pairs.append({f"Question {q_id}": question_text, f"Answer {q_id}": answer})
 
-    with open("data/qa.json", "w", encoding="utf-8") as file:
-        json.dump(qa_pairs, file, ensure_ascii=False, indent=4)
+    # with open("data/qa.json", "w", encoding="utf-8") as file:
+    #     json.dump(qa_pairs, file, ensure_ascii=False, indent=4)
 
     print("Extracted", len(qa_pairs), "question-answer pairs.")
 

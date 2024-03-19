@@ -110,7 +110,7 @@ def plot_clusters(title, df, col, plot_text_size, legend_text_size, clusters=Non
         .update_layout(
             uniformtext_minsize=plot_text_size,
             uniformtext_mode="hide",
-            width=2200,
+            width=2100,
             height=900,
             title=dict(text=title, x=0.5, y=0.98, font_size=50),
             legend=dict(font_size=legend_text_size, y=0.5, yanchor="middle"),
