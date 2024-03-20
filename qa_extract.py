@@ -167,8 +167,8 @@ def main():
         answer = answers.get(q_id, "No answer found")
         qa_pairs.append({f"Question {q_id}": question_text, f"Answer {q_id}": answer})
 
-    # with open("data/qa.json", "w", encoding="utf-8") as file:
-    #     json.dump(qa_pairs, file, ensure_ascii=False, indent=4)
+    with open("data/qa.json", "w", encoding="utf-8") as file:
+        json.dump(qa_pairs, file, ensure_ascii=False, indent=4)
 
     print("Extracted", len(qa_pairs), "question-answer pairs.")
 
