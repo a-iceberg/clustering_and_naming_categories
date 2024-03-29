@@ -166,7 +166,3 @@ cython_debug/
 **.xlsx
 **.jpg
 **.pass
-
-**/data/
-**/tables/
-**/source/
