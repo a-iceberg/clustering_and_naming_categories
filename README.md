@@ -30,7 +30,7 @@ bash setup_openai_key.sh
 ```
 ### Telegram message history export
 To retrieve your chat history in Telegram, go to the chat interface, click on the three dots for options at the top right corner, and select "Export chat history".
-Next, make sure to select **"Format": JSON** and other necessary parameters as needed. Specify the save path as **"Path"** to the root of this project, and you will have a similar folder named *source* with chat data.
+Next, make sure to select **"Format": JSON** and other necessary parameters as needed. Specify the save path as **"Path"** to the root of this project, and you will have a similar folder named [*source*](https://github.com/Darveivoldavara/clustering_and_naming_categories/tree/main/source) with chat data.
 
 ![Без имени](https://github.com/Darveivoldavara/clustering_and_naming_categories/assets/101942420/8693c989-6065-4c89-b99e-635e4d9d656e)
 
@@ -41,4 +41,4 @@ Then, you can run qa_extract.py:
 python3 qa_extract.py
 ```
 
-and the resulting **qa.json** file will appear in the *data* folder
+and the resulting **qa.json** file will appear in the [*data*](https://github.com/Darveivoldavara/clustering_and_naming_categories/tree/main/data) folder.
