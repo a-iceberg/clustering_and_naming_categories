@@ -161,6 +161,10 @@ cython_debug/
 
 **.pkl
 **.csv
+**.txt
+**.json
+**.xlsx
+**.jpg
 **.pass
 
 **/data/
